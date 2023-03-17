@@ -1,32 +1,22 @@
 //Here we define WIN32_LEAN_AND_MEAN. We do this to speed up the build process, it reduces the size of the Win32 header files by excluding some of the less used APIs.
-#define WIN32_LEAN_AND_MEAN 
-#define NOMINMAX
+#define WIN32_LEAN_AND_MEAN
+#ifndef UNICODE
 #define UNICODE
+#endif 
 #include <windows.h>
 
-LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
-{
-    LRESULT result = 0;
-    switch (msg)
-    {
-    case WM_KEYDOWN:
-    {
-        if (wparam == VK_ESCAPE)
-            DestroyWindow(hwnd);
-        break;
-    }
-    case WM_DESTROY:
-    {
-        PostQuitMessage(0);
-        break;
-    }
-    default:
-        result = DefWindowProcW(hwnd, msg, wparam, lparam);
-    }
-    return result;
-}
+LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*lpCmdLine*/, int /*nShowCmd*/)
+//int WINAPI WinMain(
+//    _In_ HINSTANCE hInstance,      // handle to current instance
+//    _In_opt_ HINSTANCE hPrevInstance,  // handle to previous instance
+//    _In_ LPSTR lpCmdLine,          // command line
+//    _In_ int nCmdShow              // show state
+//)
+//int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*lpCmdLine*/, int /*nShowCmd*/)
+
+_Use_decl_annotations_
+int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow)
 {
     // Open a window
     HWND hwnd;
@@ -53,7 +43,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*lpC
 
         hwnd = CreateWindowExW(WS_EX_OVERLAPPEDWINDOW,
             winClass.lpszClassName,
-            L"Simple Win32 Window",
+            L"00. Opening a Win32 Window",
             WS_OVERLAPPEDWINDOW | WS_VISIBLE,
             CW_USEDEFAULT, CW_USEDEFAULT,
             initialWidth,
@@ -80,6 +70,27 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*lpC
 
         Sleep(1);
     }
-
     return 0;
+}
+
+LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
+{
+    LRESULT result = 0;
+    switch (msg)
+    {
+    case WM_KEYDOWN:
+    {
+        if (wparam == VK_ESCAPE)
+            DestroyWindow(hwnd);
+        break;
+    }
+    case WM_DESTROY:
+    {
+        PostQuitMessage(0);
+        break;
+    }
+    default:
+        result = DefWindowProcW(hwnd, msg, wparam, lparam);
+    }
+    return result;
 }
