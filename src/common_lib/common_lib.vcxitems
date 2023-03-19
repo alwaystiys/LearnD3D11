@@ -21,5 +21,10 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\thirdparty\imgui\imgui_impl_win32.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\thirdparty\imgui\imgui_tables.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\thirdparty\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)cameraclass.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)d3dclass.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)graphicsclass.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)renderer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)systemclass.cpp" />
   </ItemGroup>
 </Project>

@@ -20,41 +20,42 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
 {
     // Open a window
     HWND hwnd;
-    {
-        WNDCLASSEXW winClass = {};
-        winClass.cbSize = sizeof(WNDCLASSEXW);
-        winClass.style = CS_HREDRAW | CS_VREDRAW;
-        winClass.lpfnWndProc = &WndProc;
-        winClass.hInstance = hInstance;
-        winClass.hIcon = LoadIconW(0, IDI_APPLICATION);
-        winClass.hCursor = LoadCursorW(0, IDC_ARROW);
-        winClass.lpszClassName = L"MyWindowClass";
-        winClass.hIconSm = LoadIconW(0, IDI_APPLICATION);
+    WNDCLASSEXW winClass = {};
 
-        if (!RegisterClassExW(&winClass)) {
-            MessageBoxA(0, "RegisterClassEx failed", "Fatal Error", MB_OK);
-            return GetLastError();
-        }
+    winClass.lpfnWndProc = &WndProc;
+    winClass.hInstance = hInstance;
+    winClass.lpszClassName = L"MyWindowClass";
 
-        RECT initialRect = { 0, 0, 1024, 768 };
-        AdjustWindowRectEx(&initialRect, WS_OVERLAPPEDWINDOW, FALSE, WS_EX_OVERLAPPEDWINDOW);
-        LONG initialWidth = initialRect.right - initialRect.left;
-        LONG initialHeight = initialRect.bottom - initialRect.top;
+    winClass.cbSize = sizeof(WNDCLASSEXW);
+    winClass.style = CS_HREDRAW | CS_VREDRAW;
+    winClass.hIcon = LoadIconW(0, IDI_APPLICATION);
+    winClass.hCursor = LoadCursorW(0, IDC_ARROW);
+    winClass.hIconSm = LoadIconW(0, IDI_APPLICATION);
 
-        hwnd = CreateWindowExW(WS_EX_OVERLAPPEDWINDOW,
-            winClass.lpszClassName,
-            L"00. Opening a Win32 Window",
-            WS_OVERLAPPEDWINDOW | WS_VISIBLE,
-            CW_USEDEFAULT, CW_USEDEFAULT,
-            initialWidth,
-            initialHeight,
-            0, 0, hInstance, 0);
-
-        if (!hwnd) {
-            MessageBoxA(0, "CreateWindowEx failed", "Fatal Error", MB_OK);
-            return GetLastError();
-        }
+    if (!RegisterClassExW(&winClass)) {
+        MessageBoxA(0, "RegisterClassEx failed", "Fatal Error", MB_OK);
+        return GetLastError();
     }
+
+    //RECT initialRect = { 0, 0, 1024, 768 };
+    //AdjustWindowRectEx(&initialRect, WS_OVERLAPPEDWINDOW, FALSE, WS_EX_OVERLAPPEDWINDOW);
+    //LONG initialWidth = initialRect.right - initialRect.left;
+    //LONG initialHeight = initialRect.bottom - initialRect.top;
+
+    hwnd = CreateWindowExW(WS_EX_OVERLAPPEDWINDOW,
+        winClass.lpszClassName,
+        L"00. Opening a Win32 Window",
+        WS_OVERLAPPEDWINDOW | WS_VISIBLE,
+        0, 0,
+        1024,
+        768,
+        0, 0, hInstance, 0);
+
+    if (!hwnd) {
+        MessageBoxA(0, "CreateWindowEx failed", "Fatal Error", MB_OK);
+        return GetLastError();
+    }
+    //ShowWindow(hwnd, 3);
 
     bool isRunning = true;
     while (isRunning)

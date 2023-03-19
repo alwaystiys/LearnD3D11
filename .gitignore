@@ -11,7 +11,6 @@
 *.manifest
 *.user
 *.lastbuildstate
-*.res
 *.sdf
 *.suo
 *.rc
@@ -23,7 +22,7 @@ Makefile-Release.mk
 *.VC.VC.opendb
 *.VC.db
 *.log
-*.vs
+/*.vs
 *.ipch
 
 *.unsuccessfulbuild
