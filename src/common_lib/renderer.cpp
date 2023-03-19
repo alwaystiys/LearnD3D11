@@ -33,57 +33,6 @@ bool Renderer::Initialize(ID3D11Device* device, HWND hwnd)
 	return true;
 }
 
-void Renderer::ShutdownBuffers()
-{
-	// Release the index buffer.
-	//if (m_indexBuffer)
-	//{
-	//	m_indexBuffer->Release();
-	//	m_indexBuffer = 0;
-	//}
-
-	// Release the vertex buffer.
-	if (m_vertexBuffer)
-	{
-		m_vertexBuffer->Release();
-		m_vertexBuffer = 0;
-	}
-
-	return;
-}
-
-void Renderer::ShutdownShader()
-{
-	// Release the matrix constant buffer.
-	//if (m_matrixBuffer)
-	//{
-	//	m_matrixBuffer->Release();
-	//	m_matrixBuffer = 0;
-	//}
-
-	// Release the layout.
-	if (m_layout)
-	{
-		m_layout->Release();
-		m_layout = 0;
-	}
-
-	// Release the pixel shader.
-	if (m_pixelShader)
-	{
-		m_pixelShader->Release();
-		m_pixelShader = 0;
-	}
-
-	// Release the vertex shader.
-	if (m_vertexShader)
-	{
-		m_vertexShader->Release();
-		m_vertexShader = 0;
-	}
-
-	return;
-}
 
 bool Renderer::Init(ID3D11Device* device, HWND hwnd)
 {
@@ -231,6 +180,59 @@ bool Renderer::Render(ID3D11DeviceContext* deviceContext)
 	deviceContext->Draw(m_numVerts, 0);
 
 	return true;
+}
+
+
+void Renderer::ShutdownBuffers()
+{
+	// Release the index buffer.
+	//if (m_indexBuffer)
+	//{
+	//	m_indexBuffer->Release();
+	//	m_indexBuffer = 0;
+	//}
+
+	// Release the vertex buffer.
+	if (m_vertexBuffer)
+	{
+		m_vertexBuffer->Release();
+		m_vertexBuffer = 0;
+	}
+
+	return;
+}
+
+void Renderer::ShutdownShader()
+{
+	// Release the matrix constant buffer.
+	//if (m_matrixBuffer)
+	//{
+	//	m_matrixBuffer->Release();
+	//	m_matrixBuffer = 0;
+	//}
+
+	// Release the layout.
+	if (m_layout)
+	{
+		m_layout->Release();
+		m_layout = 0;
+	}
+
+	// Release the pixel shader.
+	if (m_pixelShader)
+	{
+		m_pixelShader->Release();
+		m_pixelShader = 0;
+	}
+
+	// Release the vertex shader.
+	if (m_vertexShader)
+	{
+		m_vertexShader->Release();
+		m_vertexShader = 0;
+	}
+
+	return;
 }
 
 void Renderer::Shutdown()
