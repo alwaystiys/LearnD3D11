@@ -19,21 +19,4 @@
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\include\learnd3d11\systemclass.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\learnd3d11\graphicsclass.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\learnd3d11\d3dclass.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\learnd3d11\cameraclass.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\learnd3d11\renderer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-  </ItemGroup>
 </Project>

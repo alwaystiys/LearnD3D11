@@ -156,13 +156,6 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\include\learnd3d11\cameraclass.h" />
-    <ClInclude Include="..\..\include\learnd3d11\d3dclass.h" />
-    <ClInclude Include="..\..\include\learnd3d11\graphicsclass.h" />
-    <ClInclude Include="..\..\include\learnd3d11\renderer.h" />
-    <ClInclude Include="..\..\include\learnd3d11\systemclass.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
