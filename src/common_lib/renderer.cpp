@@ -5,12 +5,10 @@ Renderer::Renderer()
 	m_Camera = 0;
 	// 
 	m_vertexBuffer = 0;
-	m_indexBuffer = 0;
 	//
 	m_vertexShader = 0;
 	m_pixelShader = 0;
 	m_layout = 0;
-	m_matrixBuffer = 0;
 }
 
 Renderer::Renderer(const Renderer&)
@@ -38,11 +36,11 @@ bool Renderer::Initialize(ID3D11Device* device, HWND hwnd)
 void Renderer::ShutdownBuffers()
 {
 	// Release the index buffer.
-	if (m_indexBuffer)
-	{
-		m_indexBuffer->Release();
-		m_indexBuffer = 0;
-	}
+	//if (m_indexBuffer)
+	//{
+	//	m_indexBuffer->Release();
+	//	m_indexBuffer = 0;
+	//}
 
 	// Release the vertex buffer.
 	if (m_vertexBuffer)
@@ -57,11 +55,11 @@ void Renderer::ShutdownBuffers()
 void Renderer::ShutdownShader()
 {
 	// Release the matrix constant buffer.
-	if (m_matrixBuffer)
-	{
-		m_matrixBuffer->Release();
-		m_matrixBuffer = 0;
-	}
+	//if (m_matrixBuffer)
+	//{
+	//	m_matrixBuffer->Release();
+	//	m_matrixBuffer = 0;
+	//}
 
 	// Release the layout.
 	if (m_layout)
@@ -222,7 +220,6 @@ CameraClass* Renderer::getCamera() {
 
 bool Renderer::Render(ID3D11DeviceContext* deviceContext)
 {
-
 	deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	deviceContext->IASetInputLayout(m_layout);
 
