@@ -3,6 +3,7 @@
 GraphicsClass::GraphicsClass(Renderer* render) : m_Renderer(render)
 {
 	m_Direct3D = 0;
+	m_show_demo_window = false;
 }
 
 
@@ -80,9 +81,9 @@ void GraphicsClass::Shutdown()
 		delete m_Renderer;
 		m_Renderer = 0;
 	}
-
-	ImGui::DestroyContext();
-	return;
+	
+	if(ImGui::GetCurrentContext())
+		ImGui::DestroyContext();
 }
 
 bool GraphicsClass::Frame()
@@ -101,18 +102,24 @@ bool GraphicsClass::Frame()
 
 bool GraphicsClass::Render()
 {
+	XMMATRIX worldMatrix, viewMatrix, projectionMatrix;
+	bool result;
 
 	ImGui_ImplDX11_NewFrame();
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
 
-	bool show_demo_window = true;
-	ImGui::ShowDemoWindow(&show_demo_window);
+	if (m_show_demo_window) {
+		ImGui::ShowDemoWindow(&m_show_demo_window);
+	}
 
 
+	ImGui::Begin("Test Window");  
+	ImGui::Text("Hello DirectX 11!");
+	if (ImGui::Button("Click"))
+		m_show_demo_window = !m_show_demo_window;
+	ImGui::End();
 
-	XMMATRIX worldMatrix, viewMatrix, projectionMatrix;
-	bool result;
 
 	// Clear the buffers to begin the scene.
 	m_Direct3D->BeginScene(0.0f, 0.0f, 0.0f, 1.0f);

@@ -34,6 +34,7 @@ private:
 private:
 	D3DClass* m_Direct3D;
 	Renderer* m_Renderer;
+	bool m_show_demo_window;
 };
 
 
