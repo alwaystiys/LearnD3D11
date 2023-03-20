@@ -22,8 +22,6 @@ Renderer::~Renderer()
 
 bool Renderer::Initialize(ID3D11Device* device, HWND hwnd)
 {
-	//m_Camera = new CameraClass;
-	//m_Camera->SetPosition(0.0f, 0.0f, -5.0f);
 	bool result;
 	result = Init(device, hwnd);
 	if (!result)
@@ -32,6 +30,7 @@ bool Renderer::Initialize(ID3D11Device* device, HWND hwnd)
 	}
 	return true;
 }
+
 
 
 bool Renderer::Init(ID3D11Device* device, HWND hwnd)
@@ -62,6 +61,21 @@ bool Renderer::Init(ID3D11Device* device, HWND hwnd)
 		return false;
 	}
 
+	// Create Input Layout
+	D3D11_INPUT_ELEMENT_DESC inputElementDesc[] =
+	{
+		{ "POS", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+		{ "COL", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 }
+	};
+	
+
+	hResult = device->CreateInputLayout(inputElementDesc, ARRAYSIZE(inputElementDesc), vsBlob->GetBufferPointer(), vsBlob->GetBufferSize(), &m_layout);
+	if (FAILED(hResult))
+	{
+		return false;
+	}
+	vsBlob->Release();
+	vsBlob = 0;
 
 	// Create Pixel Shader
 	hResult = D3DCompileFromFile(L"../../res/shaders/4.1.color.hlsl", nullptr, nullptr, "ps_main", "ps_5_0", 0, 0, &psBlob, &shaderCompileErrorsBlob);
@@ -83,22 +97,6 @@ bool Renderer::Init(ID3D11Device* device, HWND hwnd)
 	{
 		return false;
 	}
-
-	// Create Input Layout
-	D3D11_INPUT_ELEMENT_DESC inputElementDesc[] =
-	{
-		{ "POS", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-		{ "COL", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 }
-	};
-
-	hResult = device->CreateInputLayout(inputElementDesc, ARRAYSIZE(inputElementDesc), vsBlob->GetBufferPointer(), vsBlob->GetBufferSize(), &m_layout);
-	if (FAILED(hResult))
-	{
-		return false;
-	}
-	vsBlob->Release();
-	vsBlob = 0;
-
 	psBlob->Release();
 	psBlob = 0;
 
@@ -161,7 +159,6 @@ void Renderer::OutputShaderErrorMessage(ID3D10Blob* errorMessage, HWND hwnd, WCH
 
 	return;
 }
-
 
 CameraClass* Renderer::getCamera() {
 	return m_Camera;

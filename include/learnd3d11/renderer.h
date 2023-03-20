@@ -20,6 +20,7 @@ public:
 	bool Initialize(ID3D11Device*, HWND);
 	void Shutdown();
 	bool Render(ID3D11DeviceContext*);
+	//bool createVsPsAndLayout(ID3D11Device*, HWND, LPCWSTR, D3D11_INPUT_ELEMENT_DESC*);
 	CameraClass* getCamera();
 
 private:
