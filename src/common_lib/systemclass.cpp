@@ -128,8 +128,8 @@ void SystemClass::InitializeWindows(int& screenWidth, int& screenHeight) {
 
 	}
 	else {
-		screenWidth = 800;
-		screenHeight = 600;
+		screenWidth = 1200;
+		screenHeight = 700;
 
 		posX = (GetSystemMetrics(SM_CXSCREEN) - screenWidth) / 2;
 		posY = (GetSystemMetrics(SM_CYSCREEN) - screenHeight) / 2;
@@ -148,9 +148,7 @@ void SystemClass::InitializeWindows(int& screenWidth, int& screenHeight) {
 	SetFocus(m_hwnd);
 
 	//ShowCursor(false);
-
 }
-
 
 void SystemClass::ShutdownWindows() {
 
@@ -174,6 +172,9 @@ void SystemClass::ShutdownWindows() {
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
 {
+	if (ImGui_ImplWin32_WndProcHandler(hwnd, umessage, wparam, lparam))
+		return true;
+
 	switch (umessage)
 	{
 		// Check if the window is being destroyed.

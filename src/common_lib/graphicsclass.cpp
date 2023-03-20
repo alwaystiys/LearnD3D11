@@ -16,6 +16,23 @@ GraphicsClass::~GraphicsClass()
 }
 
 
+bool GraphicsClass::InitImGui(HWND hwnd) {
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO();
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // 允许键盘控制
+	io.ConfigWindowsMoveFromTitleBarOnly = true;              // 仅允许标题拖动
+
+	// 设置Dear ImGui风格
+	ImGui::StyleColorsDark();
+
+	ImGui_ImplWin32_Init(hwnd);
+	ImGui_ImplDX11_Init(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext());
+
+	return true;
+}
+
+
 bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 {
 	bool result;
@@ -34,6 +51,13 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	if (!result)
 	{
 		MessageBox(hwnd, L"Could not initialize Renderer", L"Error", MB_OK);
+		return false;
+	}
+
+	result = InitImGui(hwnd);
+	if (!result)
+	{
+		MessageBox(hwnd, L"Could not initialize ImGui", L"Error", MB_OK);
 		return false;
 	}
 	return true;
@@ -56,6 +80,8 @@ void GraphicsClass::Shutdown()
 		delete m_Renderer;
 		m_Renderer = 0;
 	}
+
+	ImGui::DestroyContext();
 	return;
 }
 
@@ -75,6 +101,16 @@ bool GraphicsClass::Frame()
 
 bool GraphicsClass::Render()
 {
+
+	ImGui_ImplDX11_NewFrame();
+	ImGui_ImplWin32_NewFrame();
+	ImGui::NewFrame();
+
+	bool show_demo_window = true;
+	ImGui::ShowDemoWindow(&show_demo_window);
+
+
+
 	XMMATRIX worldMatrix, viewMatrix, projectionMatrix;
 	bool result;
 
@@ -85,12 +121,14 @@ bool GraphicsClass::Render()
 	//m_Direct3D->GetWorldMatrix(worldMatrix);
 	//m_Renderer->getCamera()->GetViewMatrix(viewMatrix);
 	//m_Direct3D->GetProjectionMatrix(projectionMatrix);
-
+	ImGui::Render();
 	result = m_Renderer->Render(m_Direct3D->GetDeviceContext());
 	if (!result)
 	{
 		return false;
 	}
+
+	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
 	// Present the rendered scene to the screen.
 	m_Direct3D->EndScene();

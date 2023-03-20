@@ -34,5 +34,6 @@ private:
 
 static LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 static SystemClass* ApplicationHandle = 0;
+extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 #endif _SYSTEMCLASS_H_

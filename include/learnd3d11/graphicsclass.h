@@ -6,6 +6,10 @@
 #include<learnd3d11/d3dclass.h>
 #include<learnd3d11/renderer.h>
 
+#include <imgui/imgui.h>
+#include <imgui/imgui_impl_win32.h>
+#include <imgui/imgui_impl_dx11.h>
+
 const bool FULL_SCREEN = false;
 const bool VSYNC_ENABLED = true;
 const float SCREEN_DEPTH = 1000.0f;
@@ -20,6 +24,7 @@ public:
 	~GraphicsClass();
 
 	bool Initialize(int, int, HWND);
+	bool InitImGui(HWND);
 	void Shutdown();
 	bool Frame();
 
