@@ -16,15 +16,14 @@ public:
 	Renderer(const Renderer&);
 	~Renderer();
 
-	bool Initialize(ID3D11Device*, HWND);
-	void Shutdown();
-	bool Render(ID3D11DeviceContext*);
+	virtual bool Initialize(ID3D11Device*, HWND);
+	virtual void Shutdown();
+	virtual bool Render(ID3D11DeviceContext*);
+	virtual bool Init(ID3D11Device*, HWND);
+	virtual void alertError(HRESULT, ID3DBlob*);
 
-private:
-	bool Init(ID3D11Device*, HWND);
-	void alertError(HRESULT, ID3DBlob*);
-
-private:
+//private:
+protected:
 	UINT m_numVerts;
 	UINT m_stride;
 	UINT m_offset;
