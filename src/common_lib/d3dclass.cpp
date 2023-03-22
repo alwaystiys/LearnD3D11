@@ -43,9 +43,8 @@ bool D3DClass::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hw
 	D3D11_VIEWPORT viewport;
 	float fieldOfView, screenAspect;
 
-
 	// Store the vsync setting.
-	m_vsync_enabled = vsync;
+	m_vsync_enabled = false;
 
 	// Create a DirectX graphics interface factory.
 	result = CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)&factory);
@@ -153,7 +152,7 @@ bool D3DClass::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hw
 	swapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 
 	// Set the refresh rate of the back buffer.
-	if (false)
+	if (m_vsync_enabled)
 	{
 		swapChainDesc.BufferDesc.RefreshRate.Numerator = numerator;
 		swapChainDesc.BufferDesc.RefreshRate.Denominator = denominator;

@@ -13,8 +13,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "simple_framework", "src\sim
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "draw_indexed_triangle", "src\draw_indexed_triangle\draw_indexed_triangle.vcxproj", "{7D25FBCD-56F8-4643-8D9C-84F65E33D559}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "draw_texture_quad", "src\draw_texture_quad\draw_texture_quad.vcxproj", "{187A7B4D-DC88-463A-892D-805955047BCC}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		src\common_lib\common_lib.vcxitems*{187a7b4d-dc88-463a-892d-805955047bcc}*SharedItemsImports = 4
 		src\common_lib\common_lib.vcxitems*{25a37c5c-07aa-4b48-8430-237f33274c6a}*SharedItemsImports = 4
 		src\common_lib\common_lib.vcxitems*{7d25fbcd-56f8-4643-8d9c-84f65e33d559}*SharedItemsImports = 4
 		src\common_lib\common_lib.vcxitems*{b68ae9a6-9231-4b84-9aaa-28960fa922ba}*SharedItemsImports = 4
@@ -59,6 +62,14 @@ Global
 		{7D25FBCD-56F8-4643-8D9C-84F65E33D559}.Release|x64.Build.0 = Release|x64
 		{7D25FBCD-56F8-4643-8D9C-84F65E33D559}.Release|x86.ActiveCfg = Release|Win32
 		{7D25FBCD-56F8-4643-8D9C-84F65E33D559}.Release|x86.Build.0 = Release|Win32
+		{187A7B4D-DC88-463A-892D-805955047BCC}.Debug|x64.ActiveCfg = Debug|x64
+		{187A7B4D-DC88-463A-892D-805955047BCC}.Debug|x64.Build.0 = Debug|x64
+		{187A7B4D-DC88-463A-892D-805955047BCC}.Debug|x86.ActiveCfg = Debug|Win32
+		{187A7B4D-DC88-463A-892D-805955047BCC}.Debug|x86.Build.0 = Debug|Win32
+		{187A7B4D-DC88-463A-892D-805955047BCC}.Release|x64.ActiveCfg = Release|x64
+		{187A7B4D-DC88-463A-892D-805955047BCC}.Release|x64.Build.0 = Release|x64
+		{187A7B4D-DC88-463A-892D-805955047BCC}.Release|x86.ActiveCfg = Release|Win32
+		{187A7B4D-DC88-463A-892D-805955047BCC}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
